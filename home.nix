@@ -21,6 +21,7 @@
     noto-fonts-cjk
     noto-fonts-emoji
     pavucontrol
+    pulseaudio
     rofi-wayland
     spotify
     xfce.thunar
@@ -69,6 +70,7 @@
     };
   };
 
+  # TODO: figure out duplication of fonts
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -78,15 +80,19 @@
       menu = "rofi -show drun";
       
       bars = [{
-	fonts.size = 12.0;
+        fonts = {
+          names = [ "Inconsolata Nerd Font Mono" ];
+          style = "Regular";
+          size = 13.0;
+        };
         position = "bottom";
 	statusCommand = "while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done";
       }];
 
       fonts = {
         names = [ "Inconsolata Nerd Font Mono" ];
-	style = "Regular";
-	size = 13.0;
+        style = "Regular";
+        size = 13.0;
       };
 
       input = {
