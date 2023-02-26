@@ -2,7 +2,7 @@
 
 {
   home.homeDirectory = "/home/inalone";
-  home.stateVersion = "22.05";
+  home.stateVersion = "23.05";
   home.username = "inalone";
 
   programs.home-manager.enable = true;
