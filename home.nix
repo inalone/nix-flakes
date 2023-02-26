@@ -5,6 +5,8 @@
   home.stateVersion = "23.05";
   home.username = "inalone";
 
+  home.file."${config.home.homeDirectory}/.config/sway/status_command.sh".source = config.lib.file.mkOutOfStoreSymlink ./status_command.sh;
+
   programs.home-manager.enable = true;
 
   services.udiskie.enable = true;
