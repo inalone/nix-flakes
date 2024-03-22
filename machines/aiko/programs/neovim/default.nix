@@ -19,6 +19,8 @@ in
     enable = true;
     viAlias = true;
     vimAlias = true;
+
+    plugins = [ treesitterWithGrammars ];
   };
 
   home.file."./.config/nvim/" = {
