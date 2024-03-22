@@ -19,9 +19,6 @@ in
     enable = true;
     viAlias = true;
     vimAlias = true;
-
-    plugins = [
-    ];
   };
 
   home.file."./.config/nvim/" = {
