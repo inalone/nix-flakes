@@ -19,6 +19,10 @@
     )
   ];
 
+  imports = [
+    ./programs/neovim
+  ];
+
   home.username = "user";
   home.homeDirectory = "/home/user";
   home.stateVersion = "23.11";
@@ -92,12 +96,6 @@
       userEmail = "me@inal.one";
       aliases = {
       };
-    };
-
-    neovim = {
-      enable = true;
-      vimAlias = true;
-      viAlias = true;
     };
 
     ssh = {
