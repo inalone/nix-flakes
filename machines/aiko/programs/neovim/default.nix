@@ -12,7 +12,9 @@ in
 
     # lsps
     lua-language-server
+    marksman
     rust-analyzer-unwrapped
+    vscode-langservers-extracted
   ];
 
   programs.neovim = {
