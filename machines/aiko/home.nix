@@ -61,6 +61,7 @@
   programs = {
     home-manager.enable = true;
 
+    direnv.enable = true;
     firefox.enable = true;
 
     fish = {
@@ -68,9 +69,11 @@
       interactiveShellInit = ''
                if not set -q TMUX
                  exec tmux
-        end
+               end
 
-        set -g fish_greeting
+               set -g fish_greeting
+
+        direnv hook fish | source
       '';
       loginShellInit = ''
         if test (id --user $USER) -ge 1000 && test (tty) = "/dev/tty1"

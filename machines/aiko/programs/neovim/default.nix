@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
-  treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withAllGrammars);
-in
-{
+{pkgs, ...}: let
+  treesitterWithGrammars = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+in {
   home.packages = with pkgs; [
     stylua
 
@@ -22,7 +20,7 @@ in
     viAlias = true;
     vimAlias = true;
 
-    plugins = [ treesitterWithGrammars ];
+    plugins = [treesitterWithGrammars];
   };
 
   home.file."./.config/nvim/" = {
@@ -31,7 +29,7 @@ in
   };
 
   xdg.configFile."nvim/parser".source = "${pkgs.symlinkJoin {
-      name = "treesitter-parsers";
-      paths = treesitterWithGrammars.dependencies;
-    }}/parser";
+    name = "treesitter-parsers";
+    paths = treesitterWithGrammars.dependencies;
+  }}/parser";
 }
