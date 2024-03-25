@@ -214,18 +214,21 @@
   wayland.windowManager.sway = {
     enable = true;
 
+    # TODO: convert to config.colors
     extraConfig = let
       gruvboxBlueDark = "#458588";
       gruvboxBlueLight = "#83a598";
       gruvboxRed = "#fb4934";
       gruvboxWhite = "#fbf1c7";
+      gruvboxYellowDark = "#d79921";
+      gruvboxYellowLight = "#fabd2f";
     in ''
       # Title bar colors
       #                         border              background          text               indicator             decoration_border
-      client.focused            ${gruvboxBlueLight} ${gruvboxBlueDark}  ${gruvboxWhite}    ${gruvboxBlueLight}   ${gruvboxBlueLight}
-      client.unfocused          ${gruvboxBlueLight} ${gruvboxBlueLight} ${gruvboxWhite}    ${gruvboxBlueLight}   ${gruvboxBlueLight}
-      client.focused_inactive   ${gruvboxBlueLight} ${gruvboxBlueLight} ${gruvboxWhite}    ${gruvboxBlueLight}   ${gruvboxBlueLight}
-      client.urgent             ${gruvboxRed}       ${gruvboxRed}       ${gruvboxWhite}    ${gruvboxBlueLight}   ${gruvboxBlueLight}
+      client.focused            ${gruvboxYellowDark} ${gruvboxYellowDark}  ${gruvboxWhite}    ${gruvboxYellowLight}   ${gruvboxYellowDark}
+      client.unfocused          ${gruvboxYellowLight} ${gruvboxYellowLight} ${gruvboxWhite}    ${gruvboxYellowLight}   ${gruvboxYellowLight}
+      client.focused_inactive   ${gruvboxYellowDark} ${gruvboxYellowDark} ${gruvboxWhite}    ${gruvboxYellowLight}   ${gruvboxYellowDark}
+      client.urgent             ${gruvboxRed}         ${gruvboxRed}         ${gruvboxWhite}    ${gruvboxYellowLight}   ${gruvboxYellowLight}
     '';
 
     config = rec {
@@ -234,6 +237,11 @@
           command = "${pkgs.waybar}/bin/waybar";
         }
       ];
+
+      gaps.inner = 2;
+      gaps.outer = 2;
+      gaps.smartGaps = true;
+
       modifier = "Mod4";
       menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
       terminal = "${pkgs.foot}/bin/foot";
