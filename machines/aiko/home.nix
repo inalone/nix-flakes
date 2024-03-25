@@ -48,6 +48,7 @@
     supersonic-wayland
     tigervnc
     wl-clipboard
+    xdg-utils
   ];
 
   dconf.settings = {
@@ -212,6 +213,21 @@
 
   wayland.windowManager.sway = {
     enable = true;
+
+    extraConfig = let
+      gruvboxBlueDark = "#458588";
+      gruvboxBlueLight = "#83a598";
+      gruvboxRed = "#fb4934";
+      gruvboxWhite = "#fbf1c7";
+    in ''
+      # Title bar colors
+      #                         border              background          text               indicator             decoration_border
+      client.focused            ${gruvboxBlueLight} ${gruvboxBlueDark}  ${gruvboxWhite}    ${gruvboxBlueLight}   ${gruvboxBlueLight}
+      client.unfocused          ${gruvboxBlueLight} ${gruvboxBlueLight} ${gruvboxWhite}    ${gruvboxBlueLight}   ${gruvboxBlueLight}
+      client.focused_inactive   ${gruvboxBlueLight} ${gruvboxBlueLight} ${gruvboxWhite}    ${gruvboxBlueLight}   ${gruvboxBlueLight}
+      client.urgent             ${gruvboxRed}       ${gruvboxRed}       ${gruvboxWhite}    ${gruvboxBlueLight}   ${gruvboxBlueLight}
+    '';
+
     config = rec {
       bars = [
         {
@@ -273,12 +289,11 @@
     };
   };
 
-  qt = {
+  xdg.mimeApps = {
     enable = true;
-    platformTheme = "gtk";
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
+    defaultApplications = {
+      "application/epub+zip" = ["org.kde.okular.desktop"];
+      "application/pdf" = ["org.kde.okular.desktop"];
     };
   };
 
