@@ -214,34 +214,53 @@
   wayland.windowManager.sway = {
     enable = true;
 
-    # TODO: convert to config.colors
-    extraConfig = let
-      gruvboxBlueDark = "#458588";
-      gruvboxBlueLight = "#83a598";
-      gruvboxRed = "#fb4934";
-      gruvboxWhite = "#fbf1c7";
-      gruvboxYellowDark = "#d79921";
-      gruvboxYellowLight = "#fabd2f";
-    in ''
-      # Title bar colors
-      #                         border              background          text               indicator             decoration_border
-      client.focused            ${gruvboxYellowDark} ${gruvboxYellowDark}  ${gruvboxWhite}    ${gruvboxYellowLight}   ${gruvboxYellowDark}
-      client.unfocused          ${gruvboxYellowLight} ${gruvboxYellowLight} ${gruvboxWhite}    ${gruvboxYellowLight}   ${gruvboxYellowLight}
-      client.focused_inactive   ${gruvboxYellowDark} ${gruvboxYellowDark} ${gruvboxWhite}    ${gruvboxYellowLight}   ${gruvboxYellowDark}
-      client.urgent             ${gruvboxRed}         ${gruvboxRed}         ${gruvboxWhite}    ${gruvboxYellowLight}   ${gruvboxYellowLight}
-    '';
-
     config = rec {
       bars = [
         {
           command = "${pkgs.waybar}/bin/waybar";
         }
       ];
+      colors = let
+        gruvboxRed = "#fb4934";
+        gruvboxWhite = "#fbf1c7";
+        gruvboxYellowDark = "#d79921";
+        gruvboxYellowLight = "#fabd2f";
+      in {
+        focused = {
+          border = "${gruvboxYellowDark}";
+          background = "${gruvboxYellowDark}";
+          text = "${gruvboxWhite}";
+          indicator = "${gruvboxYellowLight}";
+          childBorder = "${gruvboxYellowDark}";
+        };
+        focusedInactive = {
+          border = "${gruvboxYellowDark}";
+          background = "${gruvboxYellowDark}";
+          text = "${gruvboxWhite}";
+          indicator = "${gruvboxYellowLight}";
+          childBorder = "${gruvboxYellowDark}";
+        };
+        unfocused = {
+          border = "${gruvboxYellowLight}";
+          background = "${gruvboxYellowLight}";
+          text = "${gruvboxWhite}";
+          indicator = "${gruvboxYellowLight}";
+          childBorder = "${gruvboxYellowLight}";
+        };
+        urgent = {
+          border = "${gruvboxRed}";
+          background = "${gruvboxRed}";
+          text = "${gruvboxWhite}";
+          indicator = "${gruvboxYellowLight}";
+          childBorder = "${gruvboxYellowLight}";
+        };
+      };
 
-      gaps.inner = 2;
-      gaps.outer = 2;
-      gaps.smartGaps = true;
-
+      gaps = {
+        inner = 2;
+        outer = 2;
+        smartGaps = true;
+      };
       modifier = "Mod4";
       menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
       terminal = "${pkgs.foot}/bin/foot";
